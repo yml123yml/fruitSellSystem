@@ -1,13 +1,24 @@
 <template>
   <form class="form">
     <div class="login_form">
-      用户名：<input type="text"><br/>
-      用户名：<input type="text"><br/>
-      用户名：<input type="text">
+      <div class="mui-input-row">
+        <label>手机号:</label>
+        <input type="text" placeholder="请输入手机号" />
+      </div>
+      <div class="mui-input-row">
+        <label>密码:</label>
+        <input type="text" placeholder="请输入密码" />
+      </div>
     </div>
     <div class="register_form">
-      密码：<input type="text"><br/>
-      密码：<input type="text"><br/>
+      <div class="mui-input-row">
+        <label>手机号:</label>
+        <input type="text" placeholder="请输入手机号" />
+      </div>
+      <div class="mui-input-row">
+        <label>密码:</label>
+        <input type="text" placeholder="请输入密码" />
+      </div>
     </div>
     <div>
       <login-submit />
@@ -34,10 +45,10 @@ export default {
 .register .login_button label:nth-child(2) {
   opacity: 0;
 }
-.login .login_form{
+.login .login_form {
   opacity: 0;
 }
-.login .register_form{
+.login .register_form {
   transform: translateY(-100%);
 }
 .login .login_button label:nth-child(3) {
