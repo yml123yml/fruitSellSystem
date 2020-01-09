@@ -39,7 +39,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   .bg {
-    background: url("../assets/img/loginBG.jpg") no-repeat;
+    background: url("../../static/img/loginBG.jpg") no-repeat;
     background-size: 100% 100%;
     height: 100%;
     position: fixed;

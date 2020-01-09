@@ -5,7 +5,11 @@ import App from './App'
 import router from './router'
 import MintUi from 'mint-ui'
 import './lib/mui/css/mui.min.css'
+import 'mint-ui/lib/swipe/style.css'
+import Vant from 'vant'
+import 'vant/lib/index.css'
 
+Vue.use(Vant)
 Vue.use(MintUi)
 Vue.config.productionTip = false
 
