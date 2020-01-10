@@ -3,21 +3,78 @@
     <div style="height:38px;">
       <div class="header">
         <div class="title">冰果</div>
-        <form action="">
+        <form action>
           <i class="iconfont iconfont-search">&#xe613;</i>
-          <input type="search" placeholder="请输入水果名称"  @search="onSearch"/>
+          <input type="search" @search="onSearch" />
         </form>
       </div>
     </div>
+     <router-link :to="{name:'Index'}" style="color:#fff;">登录</router-link>
     <swipe></swipe>
-    <p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p>
-    <p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p>
-    <p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p>
-    <p>我是内容</p><p>我是内容</p>
-    <p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p>
-    <p>我是内容</p><p>我是内容</p>
-    <p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p>
-    <p>我是内容</p><p>我是内容</p><p>我是内容</p><p>我是内容</p>
+    <van-grid :border="false" :column-num="5">
+      <router-link :to="{name:'hotFruit'}">
+        <van-grid-item>
+          <van-icon name="../../../static/img/category2.png" />
+          <p class="category">热销水果</p>
+        </van-grid-item>
+      </router-link>
+      <router-link :to="{name:'importedFruit'}">
+        <van-grid-item>
+          <van-icon name="../../../static/img/category2.png"/>
+        <p class="category">进口水果</p>
+        </van-grid-item>
+      </router-link>
+      <router-link :to="{name:'seasonalFruit'}">
+        <van-grid-item>
+          <van-icon name="../../../static/img/category2.png"/>
+          <p class="category">时令水果</p>
+        </van-grid-item>
+      </router-link>
+      <router-link :to="{name:'onefreeFruit'}">
+        <van-grid-item>
+          <van-icon name="../../../static/img/category2.png"/>
+          <p class="category">买一赠一</p>
+        </van-grid-item>
+      </router-link>
+      <router-link :to="{name:'landmarkFruit'}">
+        <van-grid-item>
+          <van-icon name="../../../static/img/category2.png"/>
+          <p class="category">地标水果</p>
+        </van-grid-item>
+      </router-link>
+    </van-grid>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
+    <p>我是内容</p>
   </div>
 </template>
 
@@ -25,8 +82,7 @@
 import swipe from '../swipe.vue'
 export default {
   data () {
-    return {
-    }
+    return {}
   },
   methods: {
     onSearch () {
@@ -57,6 +113,8 @@ export default {
   .iconfont-search {
     position: absolute;
     margin-left: 10px;
+    font-size: 12px;
+    opacity: 0.5;
   }
   input {
     width: 300px;
@@ -67,5 +125,18 @@ export default {
     text-align: left;
   }
 }
-
+.van-grid-item {
+  .van-icon {
+    font-size: 50px;
+    border: 1px solid rgba(125,205,205,0.5);
+    border-radius: 50%;
+  }
+  .category {
+      font-size: 12px;
+      padding: 3px 0 0 0;
+    }
+  .van-grid-item__content {
+    background: #fff;
+  }
+}
 </style>
