@@ -9,7 +9,6 @@
         </form>
       </div>
     </div>
-     <router-link :to="{name:'Index'}" style="color:#fff;">登录</router-link>
     <swipe></swipe>
     <van-grid :border="false" :column-num="5">
       <router-link :to="{name:'hotFruit'}">
