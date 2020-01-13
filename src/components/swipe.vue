@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 .van-swipe {
-  height: 153px;
+  height: 173px;
   .van-swipe-item {
     text-align: center;
     img {

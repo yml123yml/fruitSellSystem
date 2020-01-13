@@ -38,4 +38,7 @@ export default {
   color: #2c3e50;
   background: #fff;
 }
+.mui-bar-tab {
+  background: #fff;
+}
 </style>

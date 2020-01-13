@@ -1,43 +1,50 @@
 <template>
   <div>
-    <div style="height:38px;">
-      <div class="header">
-        <div class="title">冰果</div>
-        <form action>
+    <van-sticky>
+        <form>
           <i class="iconfont iconfont-search">&#xe613;</i>
           <input type="search" @search="onSearch" />
         </form>
-      </div>
-    </div>
+    </van-sticky>
     <swipe></swipe>
     <van-grid :border="false" :column-num="5">
-      <router-link :to="{name:'hotFruit'}">
+      <router-link :to="{name:'/hot'}">
         <van-grid-item>
-          <van-icon name="../../../static/img/category2.png" />
+          <van-icon class="van-icon1">
+            <i class="iconfont">&#xe60a;</i>
+          </van-icon>
           <p class="category">热销水果</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'importedFruit'}">
+      <router-link :to="{name:'imported'}">
         <van-grid-item>
-          <van-icon name="../../../static/img/category2.png"/>
-        <p class="category">进口水果</p>
+          <van-icon class="van-icon2">
+            <i class="iconfont">&#xe600;</i>
+          </van-icon>
+          <p class="category">进口水果</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'seasonalFruit'}">
+      <router-link :to="{name:'seasonal'}">
         <van-grid-item>
-          <van-icon name="../../../static/img/category2.png"/>
+          <van-icon class="van-icon3">
+            <i class="iconfont">&#xe65b;</i>
+          </van-icon>
           <p class="category">时令水果</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'onefreeFruit'}">
+      <router-link :to="{name:'onefree'}">
         <van-grid-item>
-          <van-icon name="../../../static/img/category2.png"/>
+          <van-icon class="van-icon4">
+            <i class="iconfont">&#xe8b2;</i>
+          </van-icon>
           <p class="category">买一赠一</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'landmarkFruit'}">
+      <router-link :to="{name:'landmark'}">
         <van-grid-item>
-          <van-icon name="../../../static/img/category2.png"/>
+          <van-icon class="van-icon5">
+            <i class="iconfont">&#xe699;</i>
+          </van-icon>
           <p class="category">地标水果</p>
         </van-grid-item>
       </router-link>
@@ -95,47 +102,62 @@ export default {
 </script>
 
 <style lang="scss">
-.header {
-  z-index: 100;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  line-height: 38px;
-  background: linear-gradient(90deg, #39da85, #01b27a);
-  display: flex;
-  .title {
-    margin: 0 20px;
-    font-size: 12px;
-  }
+swipe {
+  position: relative;
+}
+form {
+  position: absolute;
+  left: 70px;
+  top: 8px;
+  z-index: 11;
   .iconfont-search {
     position: absolute;
-    margin-left: 10px;
+    margin: 0 10px;
+    padding-right: 30px;
     font-size: 12px;
     opacity: 0.5;
   }
-  input {
-    width: 300px;
+
+  input[type="search"] {
     height: 22px;
-    background: #fff;
-    border-radius: 20px;
-    padding: 0 0 0 40px;
-    text-align: left;
+    padding-left: 30px;
   }
 }
-.van-grid-item {
-  .van-icon {
-    font-size: 50px;
-    border: 1px solid rgba(125,205,205,0.5);
-    border-radius: 50%;
-  }
-  .category {
+.van-grid {
+  .van-grid-item {
+    padding: 0 5px;
+    .van-icon {
+      color: #fff;
+      font-size: 15px;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      border-radius: 50%;
+    }
+    .van-icon1 {
+      background: #FF6C81;
+    }
+    .van-icon2 {
+      background: #669FFD;
+    }
+    .van-icon3 {
+      font-weight: 700;
+      background: #F862B4;
+    }
+    .van-icon4 {
+      background: #20CA9B;
+    }
+    .van-icon5 {
+      background: #FC8C56;
+    }
+    .category {
       font-size: 12px;
       padding: 3px 0 0 0;
     }
-  .van-grid-item__content {
-    background: #fff;
+    .van-grid-item__content {
+      background: #fff;
+    }
   }
 }
 </style>

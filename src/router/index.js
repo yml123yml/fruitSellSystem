@@ -6,11 +6,11 @@ import indexContainer from '@/components/navvBar/indexContainer.vue'
 import cartContainer from '@/components/navvBar/cartContainer.vue'
 import categoryContainer from '@/components/navvBar/categoryContainer.vue'
 import myContainer from '@/components/navvBar/myContainer.vue'
-import hotFruit from '@/components/categoryContainer/hotFruit'
-import importedFruit from '@/components/categoryContainer/importedFruit'
-import landmarkFruit from '@/components/categoryContainer/landmarkFruit'
-import seasonalFruit from '@/components/categoryContainer/seasonalFruit'
-import onefreeFruit from '@/components/categoryContainer/onefreeFruit'
+import hot from '@/components/categoryContent/Hot'
+import imported from '@/components/categoryContent/Imported'
+import landmark from '@/components/categoryContent/Landmark'
+import seasonal from '@/components/categoryContent/Seasonal'
+import onefree from '@/components/categoryContent/onefree'
 import PaymentToOrderContainer from '@/components/orderContainer/PaymentToOrderContainer'
 Vue.use(Router)
 
@@ -79,44 +79,50 @@ export default new Router({
       }
     },
     {
-      path: '/onefreeFruit',
-      name: 'onefreeFruit',
-      component: onefreeFruit,
+      path: '/onefree ',
+      name: 'onefree ',
+      component: onefree,
       meta: {
         keepAlive: true
       }
     },
     {
-      path: '/seasonalFruit',
-      name: 'seasonalFruit',
-      component: seasonalFruit,
+      path: '/seasonal ',
+      name: 'seasonal ',
+      component: seasonal,
       meta: {
         keepAlive: true
       }
     },
     {
-      path: '/landmarkFruit',
-      name: 'landmarkFruit',
-      component: landmarkFruit,
+      path: '/landmark ',
+      name: 'landmark ',
+      component: landmark,
       meta: {
         keepAlive: true
       }
     },
     {
-      path: '/importedFruit',
-      name: 'importedFruit',
-      component: importedFruit,
+      path: '/imported ',
+      name: 'imported ',
+      component: imported,
       meta: {
         keepAlive: true
       }
     },
     {
-      path: '/hotFruit',
-      name: 'hotFruit',
-      component: hotFruit,
+      path: '/hot',
+      name: 'hot ',
+      component: hot,
       meta: {
         keepAlive: true
-      }
+      },
+      children: [
+        {
+          path: '/hot/:id',
+          component: indexContainer
+        }
+      ]
     }
   ],
   linkActiveClass: 'mui-active'// 高亮选中

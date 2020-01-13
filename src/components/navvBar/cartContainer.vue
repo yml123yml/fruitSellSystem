@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div style="height:38px;">
       <div class="header">
         <div class="title">购物车</div>
@@ -205,6 +205,10 @@ export default {
 }
 </script>
 <style lang="scss">
+.container {
+  background: #fff;
+  height: 100vh;
+}
 .header {
   z-index: 100;
   position: fixed;

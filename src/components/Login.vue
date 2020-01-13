@@ -48,7 +48,7 @@ export default {
   .bg-blur {
     float: left;
     width: 100%;
-    filter: blur(2px);
+    filter: blur(3px);
   }
   .content {
     position: absolute;
