@@ -4,9 +4,20 @@
     <label>
       <router-link :to="{name:'Index'}" style="color:#fff;">登录</router-link>
     </label>
-    <label>注册</label>
+    <label>
+      <div @click="register">注册</div>
+    </label>
   </span>
 </template>
+<script>
+export default {
+  methods: {
+    register () {
+      this.$toast('注册成功了,去登录')
+    }
+  }
+}
+</script>
 <style>
 .login_button {
   position: relative;

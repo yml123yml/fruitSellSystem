@@ -7,7 +7,7 @@
           :key="index"
           :icon="item.thumb"
           :text="item.title"
-          @click="openDetail(id)"
+          @click="openDetail(index)"
         />
       </van-grid>
 
@@ -118,9 +118,9 @@ export default {
     }
   },
   methods: {
-    openDetail (id) {
-      this.$router.push(`/hot/${id}`)
-      console.log(id)
+    openDetail (index) {
+      this.$router.push(`/hot/${index}`)
+      alert(index)
     }
   }
 }

@@ -12,6 +12,7 @@ import landmark from '@/components/categoryContent/Landmark'
 import seasonal from '@/components/categoryContent/Seasonal'
 import onefree from '@/components/categoryContent/onefree'
 import PaymentToOrderContainer from '@/components/orderContainer/PaymentToOrderContainer'
+import categoryDetail from '@/components/categoryDetail/cateDetail'
 Vue.use(Router)
 
 export default new Router({
@@ -116,13 +117,21 @@ export default new Router({
       component: hot,
       meta: {
         keepAlive: true
-      },
-      children: [
-        {
-          path: '/hot/:id',
-          component: indexContainer
-        }
-      ]
+      }
+      // children: [
+      //   {
+      //     path: '/hot/:id',
+      //     component: indexContainer
+      //   }
+      // ]
+    },
+    {
+      path: '/categoryDetail',
+      name: 'categoryDetail',
+      component: categoryDetail,
+      meta: {
+        keepAlive: true
+      }
     }
   ],
   linkActiveClass: 'mui-active'// 高亮选中

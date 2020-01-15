@@ -1,27 +1,45 @@
 <template>
   <div class="container">
     <div class="header2">
-      <img class="avator" src="../../../static/img/category2.png" />
-    </div>
-    <div class="my_order">
-      <div class="title">
-        我的订单
-      </div>
+      <van-cell @click="showPopup"><i class="iconfont">&#xe615;</i></van-cell>
+    <van-popup v-model="show" position="right" :style="{height:'100%'}">
       <ul>
         <li>
-          <i class="iconfont">&#xe61a;</i>
+          <i style="height:20px;width:20px;background:#FEDD52;border-radius:50%;padding:5px;" class="iconfont">&#xe622;</i>
+          <span>
+            个人资料
+          </span>
+        </li>
+        <router-link to="/login">
+          <li>
+            <i style="height:20px;width:20px;background:#FEDD52;border-radius:50%;padding:5px;" class="iconfont">&#xe603;</i>
+            <span>
+              退出登录
+            </span>
+          </li>
+        </router-link>
+      </ul>
+    </van-popup>
+      <img class="avator" src="../../../static/img/avator.jpg" />
+      <p class="name">登录/注册</p>
+    </div>
+    <div class="my_order">
+      <div class="title">我的订单</div>
+      <ul>
+        <li>
+          <i class="iconfont">&#xe642;</i>
           <span>待付款</span>
         </li>
         <li>
-          <i class="iconfont">&#xe602;</i>
+          <i style="font-weight:600;" class="iconfont">&#xe61b;</i>
           <span>待配送</span>
         </li>
         <li>
-          <i class="iconfont">&#xe601;</i>
+          <i style="font-weight:600;" class="iconfont">&#xe6ca;</i>
           <span>待收货</span>
         </li>
         <li>
-          <i class="iconfont">&#xe62d;</i>
+          <i style="font-weight:600;" class="iconfont">&#xe654;</i>
           <span>待评价</span>
         </li>
       </ul>
@@ -29,23 +47,16 @@
     <div class="order_list">
       <ul>
         <li>
-          <i class="iconfont">&#xe608;</i>
+          <i class="iconfont">&#xe622;</i>
           <span>
             收货地址
             <i class="iconfont">&#xe6e0;</i>
           </span>
         </li>
         <li>
-          <i class="iconfont">&#xe638;</i>
+          <i class="iconfont">&#xe603;</i>
           <span>
             联系客服
-            <i class="iconfont">&#xe6e0;</i>
-          </span>
-        </li>
-        <li>
-          <i class="iconfont">&#xe67b;</i>
-          <span>
-            设置
             <i class="iconfont">&#xe6e0;</i>
           </span>
         </li>
@@ -55,36 +66,73 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data () {
+    return { show: true }
+  },
+  methods: {
+    showPopup () {
+      this.show = true
+    }
+  }
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 .container {
   background: #fff;
   height: 100vh;
   .header2 {
+    position: relative;
     width: 100%;
     height: 160px;
-    display: flex;
-
-    .avator {
-      margin: 5px 10px 0 250px;
+    background: url("../../../static/img/bgimg.jpg");
+    .van-cell {
+      background: none;
+      border-bottom: 1px solid #FFF;
+      padding-bottom: 125px;
+      width: 100%;
+      i {
+        float: right;
+        font-size: 20px;
+        color: #FFf;
+      }
+    }
+    .van-popup {
+      width: 50%;
+      padding: 10px 10px;
       line-height: 40px;
-      height: 28px;
-      width: 28px;
+      i {
+        color: #fff;
+        margin-right: 10px;
+      }
+    }
+    .avator {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      line-height: 40px;
+      height: 78px;
+      width: 78px;
+      border-radius: 50%;
       img {
         height: 100%;
         width: 100%;
-        border: 1px solid rgba(0,0,0,.1);
-        border-radius: 50%;
-
       }
+    }
+    .name {
+      position: absolute;
+      font-size: 18px;
+      color: #fff;
+      top: 70px;
+      left: 140px;
     }
   }
   .my_order {
     width: 92%;
-    margin: 0 15px;
-    background: #FAFAFA;
+    margin: 10px 15px;
+    padding-bottom: 20px;
+    background: #fafafa;
     border-radius: 12px;
     box-shadow: 0 0px 8px #ebedf0;
     .title {
@@ -92,7 +140,7 @@ export default {}
       font-size: 16px;
       height: 30px;
       line-height: 30px;
-      border-bottom: 1px solid #F5F5F5;
+      border-bottom: 1px solid #f5f5f5;
       padding-left: 20px;
     }
     ul {
@@ -106,14 +154,15 @@ export default {}
         display: flex;
         flex-direction: column;
         i {
-          font-size: 18px;
-          color: red;
-
+          color: #38a56b;
+          font-size: 20px;
+          margin-bottom: 10px;
         }
       }
     }
   }
   .order_list {
+    margin: 10px 15px;
     ul {
       display: flex;
       flex-direction: column;
@@ -126,8 +175,9 @@ export default {}
           display: inline-block;
           height: 40px;
           line-height: 40px;
-          width: 320px;
-          border-bottom: 1px solid #F5F5F5;
+          width: 294px;
+          font-size: 16px;
+          border-bottom: 1px solid #f5f5f5;
           i {
             float: right;
             font-size: 12px;
