@@ -13,11 +13,11 @@
     <div class="register_form">
       <div class="mui-input-row">
         <label>手机号:</label>
-        <input type="text" placeholder="请输入手机号" />
+        <input type="text" name="userPhone" v-model="userPhone" placeholder="请输入手机号" />
       </div>
       <div class="mui-input-row">
         <label>密码:</label>
-        <input type="text" placeholder="请输入密码" />
+        <input type="text" name="passWord" v-model="passWord" placeholder="请输入密码" />
       </div>
     </div>
     <div>
@@ -26,11 +26,21 @@
   </form>
 </template>
 <script>
+
 import LoginSubmit from './LoginSubmit'
 
 export default {
   components: {
     LoginSubmit
+  },
+  data () {
+    return {
+      userPhone: '',
+      passWord: ''
+    }
+  },
+  methods: {
+
   }
 }
 </script>

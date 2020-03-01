@@ -5,15 +5,23 @@
       <router-link :to="{name:'Index'}" style="color:#fff;">登录</router-link>
     </label>
     <label>
-      <div @click="register">注册</div>
+      <div @click="addUser">注册</div>
     </label>
   </span>
 </template>
 <script>
+import axios from 'axios'
 export default {
   methods: {
-    register () {
-      this.$toast('注册成功了,去登录')
+    addUser () {
+      var passWord = this.passWord
+      var userPhone = this.userPhone
+      axios.post('/api/user/addUser', {
+        userPhone: userPhone,
+        passWord: passWord
+      }, {}).then((res) => {
+        alert('添加成功')
+      })
     }
   }
 }
