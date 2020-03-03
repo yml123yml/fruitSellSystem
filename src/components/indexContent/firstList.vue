@@ -3,7 +3,7 @@
     <van-notice-bar text="欢迎来到果多多app,这里是你喜欢的水果,欢迎选购。" left-icon="volume-o" />
     <div class="product-list">
       <div class="product-list-in">
-        <div class="proitem" v-for="(item,index) in productList" :key="index">
+        <div class="proitem" v-for="(item,index) in proList" :key="index">
           <div class="pic">
             <img :src="item.picture" />
             <div class="saletip">
@@ -26,68 +26,17 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
-      productList: [
-        {
-          id: 1,
-          picture: '../../../static/img/category2.png',
-          saletip: '爆款直降',
-          name: '我是特价水果',
-          price: '￥19.9'
-        },
-        {
-          id: 2,
-          picture: '../../../static/img/category2.png',
-          saletip: '爆款直降',
-          name: '我是特价水果',
-          price: '￥19.9'
-        },
-        {
-          id: 3,
-          picture: '../../../static/img/category2.png',
-          saletip: '爆款直降',
-          name: '我是特价水果',
-          price: '￥19.9'
-        },
-        {
-          id: 4,
-          picture: '../../../static/img/category2.png',
-          saletip: '爆款直降',
-          name: '我是特价水果',
-          price: '￥19.9'
-        },
-        {
-          id: 5,
-          picture: '../../../static/img/category2.png',
-          saletip: '爆款直降',
-          name: '我是特价水果',
-          price: '￥19.9'
-        },
-        {
-          id: 6,
-          picture: '../../../static/img/category2.png',
-          saletip: '爆款直降',
-          name: '我是特价水果',
-          price: '￥19.9'
-        },
-        {
-          id: 7,
-          picture: '../../../static/img/category2.png',
-          saletip: '爆款直降',
-          name: '我是特价水果',
-          price: '￥19.9'
-        },
-        {
-          id: 8,
-          picture: '../../../static/img/category2.png',
-          saletip: '爆款直降',
-          name: '我是特价水果',
-          price: '￥19.9'
-        }
-      ]
+      proList: []
     }
+  },
+  mounted () {
+    axios.post('/api/tuijian/selectPro').then(res => {
+      this.proList = res.data
+    })
   }
 }
 </script>

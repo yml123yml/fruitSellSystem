@@ -72,6 +72,7 @@ $(function () {
   })
 })
 export default {
+  name: 'indexContainer',
   data () {
     return {}
   },
@@ -113,7 +114,7 @@ form {
 }
 .van-grid {
   .van-grid-item {
-    padding: 0 5px;
+    margin-left: 14px;
     .van-icon {
       color: #fff;
       font-size: 15px;
