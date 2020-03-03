@@ -57,6 +57,24 @@ import $ from 'jquery'
 import swipe from '../swipe.vue'
 import firstList from '../indexContent/firstList'
 import tuiJian from '../indexContent/tuijian'
+
+export default {
+  name: 'indexContainer',
+  data () {
+    return {
+    }
+  },
+  methods: {
+    onSearch () {
+      alert('暂无水果信息')
+    }
+  },
+  components: {
+    swipe,
+    firstList,
+    tuiJian
+  }
+}
 $(function () {
   var banOffTop = $('form').offset().top // 获取到距离顶部的垂直距离
   var scTop = 0 // 初始化垂直滚动的距离
@@ -71,26 +89,8 @@ $(function () {
     }
   })
 })
-export default {
-  name: 'indexContainer',
-  data () {
-    return {}
-  },
-  methods: {
-    onSearch () {
-      alert('暂无水果信息')
-    }
-  },
-  components: {
-    swipe,
-    firstList,
-    tuiJian
-  }
-}
-
 </script>
-
-<style lang="scss">
+<style lang="scss" scoped>
 swipe {
   position: relative;
 }

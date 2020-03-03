@@ -106,8 +106,7 @@ export default {
 <style lang="scss" scoped>
 .container {
   .bg {
-    background: url("../assets/loginBG.jpg") no-repeat;
-    // background: yellow;
+    background: url("../../static/img/bg2.png") no-repeat;
     background-size: 100% 100%;
     height: 100%;
     position: fixed;
@@ -117,8 +116,7 @@ export default {
   .bg-blur {
     float: left;
     width: 100%;
-    filter: blur(150px);
-    z-index: -100;
+    filter: blur(0.2px);
   }
   .content {
     position: absolute;

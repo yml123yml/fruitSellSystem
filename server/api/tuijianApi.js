@@ -32,4 +32,16 @@ router.post('/selectPro', (req, res) => {
   })
 })
 
+router.post('/heavyPro', (req, res) => {
+  var sql = $sql.tuijian.heavyPro
+  conn.query(sql, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
+
 module.exports = router

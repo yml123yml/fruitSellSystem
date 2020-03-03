@@ -8,11 +8,14 @@
             <img :src="item.thumb" />
           </div>
           <div class="title">
-            <div class="big-title">{{ item.bigTitle }}</div>
+            <div class="big-title">
+              {{ item.bigTitle1 }}
+              {{ item.bigTitle2 }}
+            </div>
             <div class="small-title">{{ item.littleTitle }}</div>
             <div class="price">
-              <span>{{ item.price }}</span>
-              <span>{{ item.num }}</span>
+              <span>￥{{ item.price }}</span>
+              <span>/{{ item.num }}个</span>
             </div>
             <div class="buy">立即购买</div>
           </div>
@@ -23,36 +26,18 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      tuijianList: [
-        {
-          id: 1,
-          thumb: '../../../static/img/tuijian1.jpg',
-          bigTitle: '天山雪水灌溉\n果肉细腻松脆',
-          littleTitle: '农夫山泉17.5°阿克苏苹果礼盒装',
-          price: '￥98.0',
-          num: '/14个'
-        },
-        {
-          id: 2,
-          thumb: '../../../static/img/tuijian2.jpg',
-          bigTitle: '天山雪水灌溉\n果肉细腻松脆',
-          littleTitle: '农夫山泉17.5°阿克苏苹果礼盒装',
-          price: '￥98.0',
-          num: '/14个'
-        },
-        {
-          id: 3,
-          thumb: '../../../static/img/tuijian3.jpg',
-          bigTitle: '天山雪水灌溉\n果肉细腻松脆',
-          littleTitle: '农夫山泉17.5°阿克苏苹果礼盒装',
-          price: '￥98.0',
-          num: '/14个'
-        }
-      ]
+      tuijianList: []
     }
+  },
+  mounted () {
+    axios.post('/api/tuijian/heavyPro').then(res => {
+      this.tuijianList = res.data
+    })
   }
 }
 </script>
@@ -60,10 +45,11 @@ export default {
 <style lang="scss" scoped>
 .container {
   background: #ff741f;
-  height: 95vh;
+  padding-bottom: 120px;
+  // height: 100vh;
   img {
+    width: 100%;
     height: 50px;
-    width: 375px;
   }
   .tuijian {
     padding: 0 15px;
@@ -79,21 +65,21 @@ export default {
           margin-left: 12px;
           img {
             width: 120px;
-            height: 140px;
+            height: 150px;
           }
         }
         .title {
-          margin: 10px 5px;
           .big-title {
             white-space: pre-line;
             font-weight: 700;
+            line-height: 25px;
           }
           .small-title {
             font-size: 14px;
             line-height: 30px;
           }
           .price {
-            margin-top: 10px;
+            margin: 10px 0;
             span:nth-child(1) {
               color: red;
               font-size: 24px;
@@ -103,6 +89,7 @@ export default {
             }
           }
           .buy {
+            margin-bottom: 20px;
             background: #ff741f;
             text-align: center;
             width: 150px;

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <van-notice-bar text="欢迎来到果多多app,这里是你喜欢的水果,欢迎选购。" left-icon="volume-o" />
+    <van-notice-bar text="欢迎来到果多多app,这里有你喜欢的水果,欢迎选购。" left-icon="volume-o" />
     <div class="product-list">
       <div class="product-list-in">
         <div class="proitem" v-for="(item,index) in proList" :key="index">
@@ -14,7 +14,7 @@
                 <a href="javascript:;">{{ item.name }}</a>
               </p>
               <div class="price">
-                <strong>{{ item.price }}</strong>
+                <strong>￥{{ item.price }}</strong>
                 <i class="iconfont">&#xe620;</i>
               </div>
             </div>
@@ -58,28 +58,30 @@ export default {
       width: 100%;
       .proitem {
         background: #fff;
-        border-radius: 3px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        margin: 10px 10px 10px 0;
+        margin: 10px 10px 10px 3px;
         .pic {
           position: relative;
           img {
-            width: 125px;
-            height: 125px;
+            width: 120px;
+            height: 120px;
           }
           .saletip {
             position: absolute;
             bottom: 170px;
             right: -20px;
+            z-index: 1;
             span {
               border: none;
-              height: 8px;
+              height: 10px;
               background: #fb3d3d;
               color: #fff;
               border-radius: 2rem 3.31rem 3.31rem 0;
-              padding: 2px;
-              font-size: 8px;
-              line-height: 8px;
+              padding: 4px;
+              font-size: .1rem;
+              line-height: 10px;
             }
           }
           .info {
@@ -90,7 +92,7 @@ export default {
             .price {
               font-size: 12px;
               strong {
-                margin-left: 5px;
+                margin-left: 10px;
                 color: red;
               }
               i {
@@ -99,7 +101,7 @@ export default {
                 background: #01b27a;
                 color: #fff;
                 font-size: 11px;
-                margin-left: 50px;
+                margin-left: 30px;
               }
             }
           }

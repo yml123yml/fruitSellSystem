@@ -1,49 +1,35 @@
 <template>
   <div class="container">
     <van-grid :column-num="3" :border="false">
-      <van-grid-item v-for="(item,index) in hotList" :key="index" :icon="item.thumb" :text="item.title" />
+      <van-grid-item
+        v-for="(item,index) in twoList"
+        :key="index"
+        :icon="item.pic"
+        :text="item.name"
+      />
     </van-grid>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
-      hotList: [
-        {
-          id: 1,
-          title: '全部',
-          thumb: '../../../static/img/hot1.jpg'
-        },
-        {
-          id: 2,
-          title: '奇异果',
-          thumb: '../../../static/img/hot2.jpg'
-        },
-        {
-          id: 3,
-          title: '车厘子',
-          thumb: '../../../static/img/hot3.jpg'
-        },
-        {
-          id: 4,
-          title: '桃',
-          thumb: '../../../static/img/hot4.jpg'
-        }
-      ]
+      twoList: []
     }
+  },
+  mounted () {
+    axios.post('/api/category/twoFruit').then(res => {
+      this.twoList = res.data
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.van-grid {
-    margin-bottom: 30px;
-}
 /deep/ .van-icon__image {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
+  width: 68px;
+  height: 68px;
 }
 </style>

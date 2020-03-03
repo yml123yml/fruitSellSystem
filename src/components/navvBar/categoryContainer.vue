@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div style="height:38px;">
+    <div style="height:40px;">
       <div class="header">
         <div class="title">分类</div>
       </div>
@@ -9,9 +9,9 @@
       <template slot="content">
         <hot v-if="activeIndex === 0"></hot>
         <imported v-if="activeIndex === 1"></imported>
-        <landmark v-if="activeIndex === 2"></landmark>
-        <seasonal v-if="activeIndex === 3"></seasonal>
-        <onefree v-if="activeIndex === 4"></onefree>
+        <seasonal v-if="activeIndex === 2"></seasonal>
+        <onefree v-if="activeIndex === 3"></onefree>
+        <landmark v-if="activeIndex === 4"></landmark>
       </template>
     </van-tree-select>
   </div>
@@ -48,22 +48,18 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  background: #fff;
-  height: 100vh;
-
   .header {
-    z-index: 100;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 40px;
-    line-height: 38px;
+    line-height: 40px;
     background: linear-gradient(90deg, #39da85, #01b27a);
-    display: flex;
     .title {
       margin: 0 20px;
-      font-size: 12px;
+      font-size: 14px;
+      color: #ffffff;
     }
   }
 }
