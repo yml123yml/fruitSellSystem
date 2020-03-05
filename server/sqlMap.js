@@ -18,6 +18,9 @@ var sqlMap = {
     landmankFruit: 'select * from landmankFruit', // 地标水果
     twoFruit: 'select * from twoFruit', // 买一赠一水果
     seasonalFruit: 'select * from seasonalFruit' // 时令水果
+  },
+  banner: {
+    allBanner: 'select * from banner'
   }
 }
 

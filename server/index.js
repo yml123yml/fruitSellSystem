@@ -3,6 +3,7 @@
 const userApi = require('./api/userApi')
 const tuijianApi = require('./api/tuijianApi')
 const categoryApi = require('./api/categoryApi')
+const bannerApi = require('./api/bannerApi')
 const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use('/api/user', userApi)
 app.use('/api/tuijian', tuijianApi)
 app.use('/api/category', categoryApi)
+app.use('/api/banner', bannerApi)
 
 // 监听端口
 app.listen(3000)

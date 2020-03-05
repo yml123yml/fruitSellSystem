@@ -2,22 +2,29 @@
   <div>
     <van-swipe :autoplay="2000" indicator-color="white">
       <van-swipe-item  v-for="item in lunbotuList" :key="item.id">
-        <img :src="item.images" />
+        <img :src="item.proImg" @click="getProDetail(item.id)" />
       </van-swipe-item>
     </van-swipe>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
-      lunbotuList: [
-        { images: '../../static/img/banner1.jpg' },
-        { images: '../../static/img/banner2.png' },
-        { images: '../../static/img/banner3.png' },
-        { images: '../../static/img/banner4.png' }
-      ]
+      lunbotuList: []
+    }
+  },
+  mounted () {
+    axios.post('/api/banner/allBanner').then(res => {
+      console.log('我是banner接口')
+      this.lunbotuList = res.data
+    })
+  },
+  methods: {
+    getProDetail (proId) {
+      this.$router.push({path: 'bannerDetail', query: {id: proId}})
     }
   }
 }

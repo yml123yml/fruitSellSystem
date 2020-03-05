@@ -13,6 +13,8 @@ import seasonal from '@/components/categoryContent/Seasonal'
 import onefree from '@/components/categoryContent/onefree'
 import PaymentToOrderContainer from '@/components/orderContainer/PaymentToOrderContainer'
 import categoryDetail from '@/components/categoryDetail/cateDetail'
+import bannerDetail from '@/components/detail/bannerDetail'
+
 Vue.use(Router)
 
 export default new Router({
@@ -35,6 +37,14 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+      meta: {
+        keepAlive: false
+      }
+    },
+    {
+      path: '/bannerDetail',
+      name: 'bannerDetail',
+      component: bannerDetail,
       meta: {
         keepAlive: false
       }
