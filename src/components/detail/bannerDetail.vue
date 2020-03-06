@@ -1,7 +1,7 @@
 <template>
   <div class="goodDetail">
     <header-detail title="商品详情"></header-detail>
-    <ul style="padding:60px 0;">
+    <ul style="margin-top:60px;">
         <van-tabs :active=active>
             <van-tab>
                 <div slot="title">商品</div>
@@ -36,8 +36,6 @@
                 <div class="xiangqing">
                     <img :src="goodInfo.proDetailImg1" />
                     <img :src="goodInfo.proDetailImg2" />
-                    <img :src="goodInfo.proDetailImg3" />
-                    <img :src="goodInfo.proDetailImg4" />
                 </div>
             </van-tab>
             <van-tab>
@@ -48,6 +46,8 @@
             </van-tab>
         </van-tabs>
     </ul>
+    <!-- <div class="footer">我是底部</div> -->
+    <footer></footer>
   </div>
 
 </template>
@@ -55,6 +55,7 @@
 <script>
 import axios from 'axios'
 import headerDetail from '../../common/header'
+import footer from '../../common/footer'
 export default {
   name: 'bannerDetail',
   data () {
@@ -79,15 +80,24 @@ export default {
     }
   },
   components: {
-    headerDetail
+    headerDetail,
+    footer
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .goodDetail {
-    height: 100vh;
+    // height: 100vh;
     background: #fff;
+}
+/deep/ .van-tabs--line .van-tabs__wrap {
+  position: fixed;
+  z-index: 88;
+  width: 100%;
+}
+.van-tab__pane {
+  padding-top: 50px;
 }
 .van-swipe {
   height: 300px;
@@ -137,7 +147,14 @@ export default {
 }
 .xiangqing {
     img {
-        width: 100%;
+      width: 100%;
     }
+}
+.footer {
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
 }
 </style>
