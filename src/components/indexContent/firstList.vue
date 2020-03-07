@@ -4,7 +4,7 @@
     <div class="product-list">
       <div class="product-list-in">
         <div class="proitem" v-for="(item,index) in proList" :key="index">
-          <div class="pic">
+          <div class="pic" @click="getProDetail(item.id)">
             <img :src="item.picture" />
             <div class="saletip">
               <span>{{ item.saletip }}</span>
@@ -15,7 +15,6 @@
               </p>
               <div class="price">
                 <strong>￥{{ item.price }}</strong>
-                <i class="iconfont">&#xe620;</i>
               </div>
             </div>
           </div>
@@ -37,6 +36,11 @@ export default {
     axios.post('/api/tuijian/selectPro').then(res => {
       this.proList = res.data
     })
+  },
+  methods: {
+    getProDetail (proId) {
+      this.$router.push({path: 'tuijianDetail', query: {id: proId}})
+    }
   }
 }
 </script>
@@ -58,7 +62,6 @@ export default {
       width: 100%;
       .proitem {
         background: #fff;
-        border: 1px solid rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
         margin: 10px 10px 10px 3px;
@@ -92,16 +95,9 @@ export default {
             .price {
               font-size: 12px;
               strong {
-                margin-left: 10px;
+                margin-left: 40px;
                 color: red;
-              }
-              i {
-                border-radius: 50%;
-                padding: 5px;
-                background: #01b27a;
-                color: #fff;
-                font-size: 11px;
-                margin-left: 30px;
+                background: url('../../../static//img/hotFruit/l1sw1.jpg');
               }
             }
           }

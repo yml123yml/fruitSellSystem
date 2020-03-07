@@ -6,7 +6,7 @@
     </form>
     <swipe></swipe>
     <van-grid :border="false" :column-num="5">
-      <router-link :to="{name:'/hot'}">
+      <router-link :to="{name:'hotDetail'}">
         <van-grid-item>
           <van-icon class="van-icon1">
             <i class="iconfont">&#xe60a;</i>
@@ -14,7 +14,7 @@
           <p class="category">热销水果</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'imported'}">
+      <router-link :to="{name:'importedDetail'}">
         <van-grid-item>
           <van-icon class="van-icon2">
             <i class="iconfont">&#xe600;</i>
@@ -22,7 +22,7 @@
           <p class="category">进口水果</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'seasonal'}">
+      <router-link :to="{name:'seasonalDetail'}">
         <van-grid-item>
           <van-icon class="van-icon3">
             <i class="iconfont">&#xe65b;</i>
@@ -30,7 +30,7 @@
           <p class="category">时令水果</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'onefree'}">
+      <router-link :to="{name:'onefreeDetail'}">
         <van-grid-item>
           <van-icon class="van-icon4">
             <i class="iconfont">&#xe8b2;</i>
@@ -38,7 +38,7 @@
           <p class="category">买一赠一</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'landmark'}">
+      <router-link :to="{name:'landmarkDetail'}">
         <van-grid-item>
           <van-icon class="van-icon5">
             <i class="iconfont">&#xe699;</i>
@@ -114,7 +114,7 @@ form {
 }
 .van-grid {
   .van-grid-item {
-    margin-left: 14px;
+    margin-left: 10px;
     .van-icon {
       color: #fff;
       font-size: 15px;

@@ -7,41 +7,73 @@
     </div>
     <van-tree-select height="90vh" :items="items" :main-active-index.sync="activeIndex">
       <template slot="content">
-        <hot v-if="activeIndex === 0"></hot>
-        <imported v-if="activeIndex === 1"></imported>
-        <seasonal v-if="activeIndex === 2"></seasonal>
-        <onefree v-if="activeIndex === 3"></onefree>
-        <landmark v-if="activeIndex === 4"></landmark>
+        <all-fruit v-if="activeIndex === 0"></all-fruit>
+        <apple v-if="activeIndex === 1"></apple>
+        <liulian v-if="activeIndex === 2"></liulian>
+        <mangguo v-if="activeIndex === 3"></mangguo>
+        <qiyiguo v-if="activeIndex === 4"></qiyiguo>
+        <huolongguo v-if="activeIndex === 5"></huolongguo>
+        <orange v-if="activeIndex === 6"></orange>
+        <strawberry v-if="activeIndex === 7"></strawberry>
+        <migua v-if="activeIndex === 8"></migua>
+        <shiliu v-if="activeIndex === 9"></shiliu>
+        <dongzao v-if="activeIndex === 10"></dongzao>
+        <pipa v-if="activeIndex === 11"></pipa>
+        <jinju v-if="activeIndex === 12"></jinju>
       </template>
     </van-tree-select>
   </div>
 </template>
 
 <script>
-import hot from '../categoryContent/Hot'
-import imported from '../categoryContent/Imported'
-import landmark from '../categoryContent/Landmark'
-import seasonal from '../categoryContent/Seasonal'
-import onefree from '../categoryContent/onefree'
+import allFruit from '../categoryContent/allFruit'
+import apple from '../categoryContent/apple'
+import dongzao from '../categoryContent/dongzao'
+import huolongguo from '../categoryContent/huolongguo'
+import jinju from '../categoryContent/jinju'
+import liulian from '../categoryContent/liulian'
+import mangguo from '../categoryContent/mangguo'
+import migua from '../categoryContent/migua'
+import orange from '../categoryContent/orange'
+import pipa from '../categoryContent/pipa'
+import qiyiguo from '../categoryContent/qiyiguo'
+import shiliu from '../categoryContent/shiliu'
+import strawberry from '../categoryContent/strawberry'
 export default {
   data () {
     return {
       activeIndex: 0,
       items: [
-        { text: '热销水果' },
-        { text: '进口水果' },
-        { text: '时令水果' },
-        { text: '买一赠一' },
-        { text: '地标水果' }
+        { text: '全部' },
+        { text: '苹果' },
+        { text: '榴莲' },
+        { text: '芒果' },
+        { text: '奇异果' },
+        { text: '火龙果' },
+        { text: '橙子' },
+        { text: '草莓' },
+        { text: '瓜果类' },
+        { text: '石榴山竹' },
+        { text: '青枣龙眼' },
+        { text: '枇杷芭乐' },
+        { text: '金桔柠檬' }
       ]
     }
   },
   components: {
-    hot,
-    imported,
-    landmark,
-    seasonal,
-    onefree
+    allFruit,
+    apple,
+    dongzao,
+    huolongguo,
+    jinju,
+    liulian,
+    mangguo,
+    migua,
+    orange,
+    pipa,
+    qiyiguo,
+    shiliu,
+    strawberry
   }
 }
 </script>
@@ -62,5 +94,11 @@ export default {
       color: #ffffff;
     }
   }
+}
+.van-sidebar-item--select {
+  color: red;
+}
+.van-tree-select__nav {
+  flex: none;
 }
 </style>

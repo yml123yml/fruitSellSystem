@@ -4,7 +4,7 @@
     <div class="tuijian">
       <div class="tuijian-in">
         <div class="tuijian-item" v-for="(item,index) in tuijianList" :key="index">
-          <div class="pic">
+          <div class="pic" @click="getProDetail(item.id)">
             <img :src="item.thumb" />
           </div>
           <div class="title">
@@ -38,6 +38,11 @@ export default {
     axios.post('/api/tuijian/heavyPro').then(res => {
       this.tuijianList = res.data
     })
+  },
+  methods: {
+    getProDetail (proId) {
+      this.$router.push({path: 'heavyCommendDetail', query: {id: proId}})
+    }
   }
 }
 </script>
