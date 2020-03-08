@@ -97,7 +97,6 @@ export default {
               strong {
                 margin-left: 40px;
                 color: red;
-                background: url('../../../static//img/hotFruit/l1sw1.jpg');
               }
             }
           }
