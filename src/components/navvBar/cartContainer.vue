@@ -16,7 +16,7 @@
           ></van-checkbox>
           <div class="shopdetail">
             <div class="detailimg">
-              <img :src="item.thumb" />
+              <img :src="item.pic" />
             </div>
             <div class="detailtext">
               <div class="shoptitle">{{ item.title }}</div>
@@ -60,37 +60,12 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       result: [],
-      goods: [
-        {
-          id: 1,
-          title: 'A级-广东四会砂糖橘 2斤装',
-          price: 980,
-          oldprice: 1400,
-          num: 1,
-          thumb: '../../../static/img/jinkoufruit-01.jpg'
-        },
-        {
-          id: 2,
-          title: 'A级-智利JJ级车厘子（28mm-30mm） 250g',
-          price: 1200,
-          oldprice: 1400,
-          lvd: 0,
-          num: 1,
-          thumb: '../../../static/img/jinkoufruit-02.jpg'
-        },
-        {
-          id: 3,
-          title: 'A级-海南陵水圣女果 480g',
-          price: 1000,
-          oldprice: 1400,
-          num: 1,
-          thumb: '../../../static/img/jinkoufruit-03.jpg'
-        }
-      ],
+      goods: [],
       allchecked: false,
       selectedData: [],
       // 总价
@@ -99,6 +74,13 @@ export default {
     }
   },
   methods: {
+    getCart () {
+      axios.post('/api/cart/allCart').then((res) => {
+        console.log('dkfjd')
+        console.log(res.data)
+        this.goods = res.data
+      })
+    },
     // position 为关闭时点击的位置
     // instance 为对应的 SwipeCell 实例
     beforeClose ({ position, instance }) {
@@ -201,6 +183,7 @@ export default {
   },
   created: function () {
     this.count()
+    this.getCart()
   }
 }
 </script>
