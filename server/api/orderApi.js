@@ -20,8 +20,8 @@ var jsonWrite = function (res, ret) {
   }
 }
 
-router.post('/allCart', (req, res) => {
-  var sql = $sql.cart.allCart
+router.post('/query', (req, res) => {
+  var sql = $sql.order.query
   conn.query(sql, function (err, result) {
     if (err) {
       console.log(err)
@@ -32,9 +32,10 @@ router.post('/allCart', (req, res) => {
   })
 })
 
-router.post('/addCart', (req, res) => {
-  var sql = $sql.cart.addCart
-  conn.query(sql, function (err, result) {
+router.post('/add', (req, res) => {
+  var sql = $sql.order.add
+  var params = req.body
+  conn.query(sql, [params.name, params.pic, params.address], function (err, result) {
     if (err) {
       console.log(err)
     }

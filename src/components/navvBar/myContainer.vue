@@ -21,7 +21,10 @@
       </ul>
     </van-popup>
       <img class="avator" src="../../../static/img/avator.jpg" />
-      <p class="name">登录/注册</p>
+      <div class="name">
+        <p>{{ name }}</p>
+        <p v-if="!name">未登录</p>
+      </div>
     </div>
     <div class="my_order">
       <div class="title">我的订单</div>
@@ -68,12 +71,19 @@
 <script>
 export default {
   data () {
-    return { show: true }
+    return {
+      show: false,
+      name: ''
+    }
   },
   methods: {
     showPopup () {
       this.show = true
     }
+  },
+  created () {
+    let userinfo = JSON.parse(localStorage.getItem('userinfo'))
+    this.name = userinfo.userName
   }
 }
 </script>

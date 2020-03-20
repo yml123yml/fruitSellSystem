@@ -82,7 +82,6 @@ export default {
         let data = {'username': this.userName, 'password': this.passWord}
 
         axios.post('/api/user/selectUser', data).then((res) => {
-          console.log(res)
           /* 接口的传值是(-1,该用户不存在),(0,密码错误)，同时还会检测管理员账号的值 */
           if (res.data === -1) {
             this.tip = '该用户不存在'
@@ -93,6 +92,7 @@ export default {
           } else {
             this.tip = '登录成功'
             this.showTip = true
+            localStorage.setItem('userinfo', JSON.stringify(res.data[0]))
             setTimeout(function () {
               self.$router.push({name: 'indexContainer'})
             }, 1000)

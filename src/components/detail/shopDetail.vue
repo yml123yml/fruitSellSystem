@@ -14,31 +14,31 @@
               indicator-color="white"
             >
               <van-swipe-item>
-                <img :src="goodInfo.proSwipeImg1" />
+                <img :src="goodsInfo.proSwipeImg1" />
               </van-swipe-item>
               <van-swipe-item>
-                <img :src="goodInfo.proSwipeImg2" />
+                <img :src="goodsInfo.proSwipeImg2" />
               </van-swipe-item>
               <van-swipe-item>
-                <img :src="goodInfo.proSwipeImg3" />
+                <img :src="goodsInfo.proSwipeImg3" />
               </van-swipe-item>
             </van-swipe>
             <div class="goodDetailTitle">
-              <h3>{{ goodInfo.title }}</h3>
-              <h4>{{ goodInfo.description }}</h4>
-              <h5>￥{{ goodInfo.price }}</h5>
+              <h3>{{ goodsInfo.title }}</h3>
+              <h4>{{ goodsInfo.description }}</h4>
+              <h5>￥{{ goodsInfo.price }}</h5>
             </div>
             <div class="purchaseNum">
               <label>购买数量</label>
-              <van-stepper v-model="goodInfo.homeValue" />
+              <van-stepper v-model="homeValue" />
             </div>
           </div>
         </van-tab>
         <van-tab>
           <div slot="title">详情</div>
           <div class="xiangqing">
-            <img :src="goodInfo.proDetailImg1" />
-            <img :src="goodInfo.proDetailImg2" />
+            <img :src="goodsInfo.proDetailImg1" />
+            <img :src="goodsInfo.proDetailImg2" />
           </div>
         </van-tab>
         <van-tab>
@@ -53,13 +53,12 @@
       <van-goods-action-icon
         icon="cart-o"
         text="购物车"
-        :info="cartLen"
         @click="goCarShop"
       />
       <van-goods-action-button
         type="warning"
         text="加入购物车"
-        @click="addGoodsCar(goodInfo)"      />
+        @click="addGoodsCar()"      />
       <van-goods-action-button
         type="danger"
         text="立即购买"
@@ -70,6 +69,7 @@
 </template>
 
 <script>
+import { Toast } from 'vant'
 import axios from 'axios'
 import headerDetail from '../../common/header'
 export default {
@@ -77,32 +77,43 @@ export default {
   data () {
     return {
       active: 0,
-      goodInfo: {},
+      goodsInfo: {},
       proattrs: [],
       value: 1,
-      cartLen: 0
+      homeValue: 1
     }
   },
-  created () {
-    this.getDetail()
-  },
   methods: {
-    getDetail () {
-      var currentId = parseInt(this.$route.query.id)
-      const url = `api/category/allFruit?id=${currentId}`
-      axios.post(url).then(res => {
-        this.goodInfo = res.data[currentId - 1]
-      })
-    },
     goCarShop () {
       this.$router.push({path: 'cartContainer'})
     },
     addGoodsCar (goodInfo) {
-      return this.cartLen++
+      this.goodsInfo.homeValue = this.homeValue
+      let cartsInfo = []
+      if (localStorage.getItem('cartsInfo')) {
+        let tempInfo = JSON.parse(localStorage.getItem('cartsInfo'))
+        console.log('我是tempInfo')
+        console.log(tempInfo)
+        tempInfo.push(this.goodsInfo)
+        localStorage.setItem('cartsInfo', JSON.stringify(tempInfo))
+      } else {
+        cartsInfo.push(this.goodsInfo)
+        localStorage.setItem('cartsInfo', JSON.stringify(cartsInfo))
+      }
+      console.log('我是cartsInfo')
+      console.log(JSON.parse(localStorage.getItem('cartsInfo')))
+      Toast('加入购物车成功')
     }
   },
   components: {
     headerDetail
+  },
+  mounted () {
+    let goodsInfo2 = JSON.parse(localStorage.getItem('goodsInfo'))
+    axios.post('api/category/queryFruitDetail?', {id: goodsInfo2.id}).then(res => {
+      console.log(res.dara)
+      this.goodsInfo = res.data[0]
+    })
   }
 }
 </script>

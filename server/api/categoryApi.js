@@ -227,4 +227,17 @@ router.post('/strawberry', (req, res) => {
     }
   })
 })
+// 通过id获得商品
+router.post('/queryFruitDetail', (req, res) => {
+  let userdata = [req.body.id]
+  var sql = $sql.category.getFruitById
+  conn.query(sql, userdata, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    if (result) {
+      jsonWrite(res, result)
+    }
+  })
+})
 module.exports = router

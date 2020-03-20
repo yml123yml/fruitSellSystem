@@ -30,17 +30,19 @@ var sqlMap = {
     pipa: 'select * from allFruit where tip like "%枇杷%" or tip like "%芭乐%" ',
     qiyiguo: 'select * from allFruit where tip like "%奇异%" ',
     shiliu: 'select * from allFruit where tip like "%石榴%" or tip like "%山竹%" ',
-    strawberry: 'select * from allFruit where tip like "%莓%" '
+    strawberry: 'select * from allFruit where tip like "%莓%" ',
+    getFruitById: 'select * from allfruit where id = ?'
   },
   banner: {
-    allBanner: 'select * from banner'
+    allBanner: 'select * from banner',
+    getBannerById: 'select * from banner where id = ?'
   },
   search: {
     searchAllFruit: 'select * from allFruit'
   },
-  cart: {
-    addCart: 'insert into cart(title, price, oldprice, num, pic) values (?, ?, ?, ?, ?)',
-    allCart: 'select * from cart'
+  order: {
+    add: 'insert into order(name, pic) values (?, ?)',
+    query: 'select * from order'
   }
 }
 

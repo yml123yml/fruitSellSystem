@@ -1,7 +1,7 @@
 <template>
   <div class="goodDetail">
     <ul style="margin-top:20px;">
-      <li v-for="item in list" :key="item.id" @click="getProDetail(item.id)">
+      <li v-for="(item,index) in list" :key="index" @click="getProDetail(item)">
         <img :src="item.pic" />
         <div class="info">
           <div class="title">{{ item.title }}</div>
@@ -31,8 +31,9 @@ export default {
     })
   },
   methods: {
-    getProDetail (proId) {
-      this.$router.push({path: 'shopDetail', query: {id: proId}})
+    getProDetail (item) {
+      localStorage.setItem('goodsInfo', JSON.stringify(item))
+      this.$router.push({path: 'shopDetail'})
     }
   }
 }

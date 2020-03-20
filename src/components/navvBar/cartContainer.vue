@@ -6,8 +6,8 @@
       </div>
     </div>
     <div class="cartList">
-      <ul v-if="goods.length > 0">
-        <li v-for="(item, index) in goods" :key="index">
+      <ul v-if="shopcartList.length > 0">
+        <li v-for="(item, index) in shopcartList" :key="index">
           <van-checkbox
             :value="item.id"
             v-model="item.isChecked"
@@ -27,7 +27,7 @@
                   </p>
                 </van-col>
                 <van-col span="4">
-                  <span class="oldprice">¥{{ item.oldprice}}</span>
+                  <span class="oldprice">¥{{ item.oldPrice}}</span>
                 </van-col>
                 <van-col span="16">
                   <div class="shopnum">
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div>
-      <div class="cartfotter" v-if="goods.length > 0">
+      <div class="cartfotter" v-if="shopcartList.length > 0">
         <van-submit-bar button-text="去结算" @submit="onSubmit">
           <van-checkbox v-model="allchecked" checked-color="#15C481" @click="checkAll">全选</van-checkbox>
           <div class="buyprice">
@@ -60,12 +60,13 @@
 </template>
 
 <script>
+import { Toast } from 'vant'
 import axios from 'axios'
 export default {
   data () {
     return {
       result: [],
-      goods: [],
+      shopcartList: [],
       allchecked: false,
       selectedData: [],
       // 总价
@@ -74,33 +75,6 @@ export default {
     }
   },
   methods: {
-    getCart () {
-      axios.post('/api/cart/allCart').then((res) => {
-        console.log('dkfjd')
-        console.log(res.data)
-        this.goods = res.data
-      })
-    },
-    // position 为关闭时点击的位置
-    // instance 为对应的 SwipeCell 实例
-    beforeClose ({ position, instance }) {
-      switch (position) {
-        case 'left':
-        case 'cell':
-        case 'outside':
-          instance.close()
-          break
-        case 'right':
-          this.$dialog
-            .confirm({
-              message: '确定删除吗？'
-            })
-            .then(() => {
-              instance.close()
-            })
-          break
-      }
-    },
     // 单选的change事件
     chooseChange (i, item) {
       this.$toast(i)
@@ -111,7 +85,6 @@ export default {
         })
         this.selectedData = arrs
         item.isChecked = false
-        // this.remove(this.selectedData, i);
         this.count()
         console.log(this.selectedData)
       } else {
@@ -119,7 +92,7 @@ export default {
         item.isChecked = true
         this.count()
       }
-      if (this.selectedData.length < this.goods.length) {
+      if (this.selectedData.length < this.shopcartList.length) {
         this.allchecked = false
       } else {
         this.allchecked = true
@@ -131,12 +104,12 @@ export default {
     onChange (item) {
       this.$toast(item.num)
       this.count()
-      console.log(this.goods)
+      console.log(this.shopcartList)
     },
     // 计算价格
     count: function () {
       var totalPrice = 0 // 临时总价
-      this.goods.forEach(function (val) {
+      this.shopcartList.forEach(function (val) {
         if (val.isChecked) {
           totalPrice += val.num * val.price // 累计总价
         }
@@ -145,14 +118,13 @@ export default {
     },
     // 全选
     checkAll () {
-      let list = this.goods
+      let list = this.shopcartList
       if (this.allchecked === true) {
         list.forEach(element => {
           element.isChecked = false
         })
         this.selectedData = []
         this.count()
-        console.log('111' + this.selectedData)
       } else {
         list.forEach(element => {
           element.isChecked = true
@@ -161,29 +133,38 @@ export default {
           }
         })
         this.count()
-        console.log('222' + this.selectedData)
       }
     },
     // 去结算
     onSubmit () {
+      let userinfo = JSON.parse(localStorage.getItem('userinfo'))
+      if (userinfo === null) {
+        Toast('未登录无法购买商品,请去登录')
+      }
       // 选择购买的商品
       var cartgoods = []
-      this.goods.forEach(function (item) {
+      this.shopcartList.forEach(function (item) {
         if (item.isChecked) {
           cartgoods.push({ id: item.id, num: item.num })
         }
       })
       if (cartgoods.length === 0) {
-        this.$toast('请选择商品购买')
+        Toast('请选择商品购买')
       } else {
         this.$router.push('PaymentToOrderContainer')
+        // axios.post('/api/order/add', {}).then(res => {
+        //   console.log(res.data)
+        //   localStorage.setItem('orderInfo', JSON.stringify(res.data))
+        // })
       }
-      console.log(cartgoods)
     }
   },
   created: function () {
     this.count()
-    this.getCart()
+  },
+  mounted () {
+    let cartsInfo = JSON.parse(localStorage.getItem('cartsInfo'))
+    this.shopcartList = cartsInfo
   }
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div>
     <van-swipe :autoplay="2000" indicator-color="white">
-      <van-swipe-item  v-for="item in lunbotuList" :key="item.id">
-        <img :src="item.proImg" @click="getProDetail(item.id)" />
+      <van-swipe-item  v-for="(item,index) in lunbotuList" :key="index">
+        <img :src="item.pic" @click="getProDetail(item)" />
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -18,13 +18,13 @@ export default {
   },
   mounted () {
     axios.post('/api/banner/allBanner').then(res => {
-      console.log('我是banner接口')
       this.lunbotuList = res.data
     })
   },
   methods: {
-    getProDetail (proId) {
-      this.$router.push({path: 'bannerDetail', query: {id: proId}})
+    getProDetail (item) {
+      localStorage.setItem('goodsInfo', JSON.stringify(item))
+      this.$router.push({path: '/bannerDetail'})
     }
   }
 }
