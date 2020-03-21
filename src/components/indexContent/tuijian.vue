@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="tuijian1">
     <img src="../../../static/img/tuijian.jpg" />
     <div class="tuijian">
       <div class="tuijian-in">
@@ -63,9 +63,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.tuijian1 {
   background: #ff741f;
-  padding-bottom: 120px;
+  padding-bottom: 100px;
   img {
     width: 100%;
     height: 50px;

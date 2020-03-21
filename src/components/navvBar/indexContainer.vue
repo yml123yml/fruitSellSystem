@@ -6,7 +6,7 @@
     </form>
     <swipe></swipe>
     <van-grid :border="false" :column-num="5">
-      <router-link :to="{name:'hotDetail'}">
+      <router-link :to="{ name: 'hotDetail' }">
         <van-grid-item>
           <van-icon class="van-icon1">
             <i class="iconfont">&#xe60a;</i>
@@ -14,7 +14,7 @@
           <p class="category">热销水果</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'importedDetail'}">
+      <router-link :to="{ name: 'importedDetail' }">
         <van-grid-item>
           <van-icon class="van-icon2">
             <i class="iconfont">&#xe600;</i>
@@ -22,7 +22,7 @@
           <p class="category">进口水果</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'seasonalDetail'}">
+      <router-link :to="{ name: 'seasonalDetail' }">
         <van-grid-item>
           <van-icon class="van-icon3">
             <i class="iconfont">&#xe65b;</i>
@@ -30,7 +30,7 @@
           <p class="category">时令水果</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'onefreeDetail'}">
+      <router-link :to="{ name: 'onefreeDetail' }">
         <van-grid-item>
           <van-icon class="van-icon4">
             <i class="iconfont">&#xe8b2;</i>
@@ -38,7 +38,7 @@
           <p class="category">买一赠一</p>
         </van-grid-item>
       </router-link>
-      <router-link :to="{name:'landmarkDetail'}">
+      <router-link :to="{ name: 'landmarkDetail' }">
         <van-grid-item>
           <van-icon class="van-icon5">
             <i class="iconfont">&#xe699;</i>
@@ -59,8 +59,7 @@ import tuiJian from '../indexContent/tuijian'
 export default {
   name: 'indexContainer',
   data () {
-    return {
-    }
+    return {}
   },
   components: {
     swipe,
@@ -70,14 +69,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-swipe {
-  position: relative;
-}
 form {
   position: absolute;
   left: 70px;
   top: 8px;
-  z-index: 11;
+  z-index: 1;
   .iconfont-search {
     position: absolute;
     margin: 0 10px;
@@ -123,19 +119,6 @@ form {
       font-size: 12px;
       padding: 3px 0 0 0;
     }
-    .van-grid-item__content {
-      background: #fff;
-    }
   }
-}
-.fixForm {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 0 50px;
-  height: 40px;
-  line-height: 38px;
-  background: linear-gradient(90deg, #39da85, #01b27a);
 }
 </style>

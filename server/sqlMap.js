@@ -5,12 +5,11 @@ var sqlMap = {
     add: 'insert into user(userName, passWord) values (?, ?)',
     // 查询用户和密码
     select_name: 'select * from user where userName = ?',
-    select_password: 'select * from user where passWord = ?',
-    update_password: 'update user set password = ? where id = ?'
+    select_password: 'select * from user where passWord = ?'
   },
   tuijian: {
     selectPro: 'select * from tuijian', // 滑动推荐
-    heavyPro: 'select * from heavyRecommend', // 重磅推荐
+    heavyPro: 'select * from heavyRecommend' // 重磅推荐
   },
   category: {
     hotFruit: 'select * from hotFruit', // 热销水果
@@ -36,13 +35,6 @@ var sqlMap = {
   banner: {
     allBanner: 'select * from banner',
     getBannerById: 'select * from banner where id = ?'
-  },
-  search: {
-    searchAllFruit: 'select * from allFruit'
-  },
-  order: {
-    add: 'insert into order(name, pic) values (?, ?)',
-    query: 'select * from order'
   }
 }
 

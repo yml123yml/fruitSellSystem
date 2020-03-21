@@ -1,7 +1,7 @@
 <template>
   <div class="goodDetail">
     <header-detail title="商品详情"></header-detail>
-    <ul style="margin-top:60px;">
+    <ul style="padding-top:60px;">
       <van-tabs :active="active">
         <van-tab>
           <div slot="title">商品</div>
@@ -45,7 +45,7 @@
         <van-tab>
           <div slot="title">评论</div>
           <div>
-            评论内容
+            暂无评论
           </div>
         </van-tab>
       </van-tabs>
@@ -121,7 +121,7 @@ export default {
 
 <style lang="scss" scoped>
 .goodDetail {
-  height: 90vh;
+  min-height: 100vh;
   background: #fff;
 }
 /deep/ .van-tabs--line .van-tabs__wrap {
@@ -132,8 +132,9 @@ export default {
 .van-tab__pane {
   padding-top: 50px;
 }
-.van-swipe {
+/deep/ .van-swipe {
   height: 300px;
+  transform: translateZ(0);
   .van-swipe-item {
     text-align: center;
     img {

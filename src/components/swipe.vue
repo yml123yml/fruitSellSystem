@@ -31,8 +31,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.van-swipe {
+/deep/ .van-swipe {
   height: 173px;
+  transform: translateZ(0);
   .van-swipe-item {
     text-align: center;
     img {

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="first">
     <van-notice-bar text="欢迎来到果多多app,这里有你喜欢的水果,欢迎选购。" left-icon="volume-o" />
     <div class="product-list">
       <div class="product-list-in">
@@ -63,8 +63,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  background: #fff;
+.first {
   .van-notice-bar {
     margin-top: -15px;
     background: #fff;

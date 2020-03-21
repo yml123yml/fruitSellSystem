@@ -1,7 +1,11 @@
 <template>
-  <div class="goodDetail">
+  <div>
     <ul style="margin-top:20px;">
-      <li v-for="(item,index) in list" :key="index" @click="getProDetail(item)">
+      <li
+        v-for="(item, index) in list"
+        :key="index"
+        @click="getProDetail(item)"
+      >
         <img :src="item.pic" />
         <div class="info">
           <div class="title">{{ item.title }}</div>
@@ -18,7 +22,7 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'allFruit',
+  name: 'qiyiguo',
   data () {
     return {
       list: []
@@ -32,56 +36,57 @@ export default {
   methods: {
     getProDetail (item) {
       localStorage.setItem('goodsInfo', JSON.stringify(item))
-      this.$router.push({path: 'shopDetail'})
+      this.$router.push({ path: 'shopDetail' })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.goodDetail {
-  ul {
-    li {
-      border-bottom: 1px solid rgba($color: #ccc, $alpha: 0.2);
-      display: flex;
-      padding: 10px 5px;
-      img {
-        margin: 0 10px;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
+ul {
+  li {
+    border-bottom: 1px solid rgba($color: #ccc, $alpha: 0.2);
+    display: flex;
+    padding: 10px 5px;
+    img {
+      margin: 0 10px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+    }
+    .info {
+      width: 170px;
+      margin-left: 10px;
+      .title {
+        font-size: 1rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
-      .info {
-        width: 170px;
-        margin-left: 10px;
-        .title {
+      .desc {
+        font-size: 0.5rem;
+        color: #808080;
+        padding: 0.2rem 0 0.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .price {
+        position: relative;
+        height: 1rem;
+        padding-top: 0.4rem;
+        z-index: 10;
+        .priceRed {
           font-size: 1rem;
-          overflow:hidden;
-          text-overflow:ellipsis;
-          white-space:nowrap;
-        }
-        .desc {
-          font-size: 0.5rem;
-          color: #808080;
-          padding: 0.2rem 0 0.2rem;
-          overflow:hidden;
-          text-overflow:ellipsis;
-          white-space:nowrap;
-        }
-        .price {
-          position: relative;
-          height: 1rem;
-          padding-top: 0.4rem;
-          z-index: 10;
-          .priceRed {
-            font-size: 1rem;
-            color: #fd3d3d;
-            padding-right: 0.45rem;
-            line-height: 1.1rem;
-          }
+          color: #fd3d3d;
+          padding-right: 0.45rem;
+          line-height: 1.1rem;
         }
       }
     }
+  }
+  li:last-child {
+    border: none;
   }
 }
 </style>

@@ -1,11 +1,15 @@
 <template>
-  <div class="container">
+  <div>
     <div style="height:40px;">
       <div class="header">
         <div class="title">分类</div>
       </div>
     </div>
-    <van-tree-select height="90vh" :items="items" :main-active-index.sync="activeIndex">
+    <van-tree-select
+      height="90vh"
+      :items="items"
+      :main-active-index.sync="activeIndex"
+    >
       <template slot="content">
         <all-fruit v-if="activeIndex === 0"></all-fruit>
         <apple v-if="activeIndex === 1"></apple>
@@ -79,20 +83,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    background: linear-gradient(90deg, #39da85, #01b27a);
-    .title {
-      margin: 0 20px;
-      font-size: 14px;
-      color: #ffffff;
-    }
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  background: linear-gradient(90deg, #39da85, #01b27a);
+  .title {
+    margin: 0 20px;
+    font-size: 14px;
+    color: #ffffff;
   }
 }
 .van-sidebar-item--select {
