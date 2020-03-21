@@ -137,5 +137,5 @@ export default new Router({
       }
     }
   ],
-  linkActiveClass: 'mui-active'// 高亮选中
+  linkActiveClass: 'mui-active' // 高亮选中
 })

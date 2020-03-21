@@ -26,9 +26,11 @@ var sqlMap = {
     mangguo: 'select * from allFruit where tip like "%芒果%" ',
     migua: 'select * from allFruit where tip like "%瓜%" ',
     orange: 'select * from allFruit where tip like "%橙子%" ',
-    pipa: 'select * from allFruit where tip like "%枇杷%" or tip like "%芭乐%" ',
+    pipa:
+      'select * from allFruit where tip like "%枇杷%" or tip like "%芭乐%" ',
     qiyiguo: 'select * from allFruit where tip like "%奇异%" ',
-    shiliu: 'select * from allFruit where tip like "%石榴%" or tip like "%山竹%" ',
+    shiliu:
+      'select * from allFruit where tip like "%石榴%" or tip like "%山竹%" ',
     strawberry: 'select * from allFruit where tip like "%莓%" ',
     getFruitById: 'select * from allfruit where id = ?'
   },

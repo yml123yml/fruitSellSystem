@@ -11,9 +11,7 @@
         <span class="mui-tab-label">分类</span>
       </router-link>
       <router-link class="mui-tab-item" to="/cartContainer">
-        <span class="mui-icon iconfont">&#xe620;
-          <span class="mui-badge">2</span>
-        </span>
+        <span class="mui-icon iconfont">&#xe620;</span>
         <span class="mui-tab-label">购物车</span>
       </router-link>
       <router-link class="mui-tab-item" to="/myContainer">
@@ -32,7 +30,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

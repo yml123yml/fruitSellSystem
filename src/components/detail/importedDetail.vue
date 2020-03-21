@@ -2,7 +2,7 @@
   <div class="goodDetail">
     <header-detail title="进口水果"></header-detail>
     <ul style="margin-top:60px;">
-      <li v-for="(item ,index) in list1" :key="index">
+      <li v-for="(item, index) in list1" :key="index">
         <div class="picture">
           <img :src="item.pic" />
         </div>
@@ -47,16 +47,12 @@ export default {
       let cartsInfo = []
       if (localStorage.getItem('cartsInfo')) {
         let tempInfo = JSON.parse(localStorage.getItem('cartsInfo'))
-        console.log('我是tempInfo')
-        console.log(tempInfo)
         tempInfo.push(this.list1[id - 1])
         localStorage.setItem('cartsInfo', JSON.stringify(tempInfo))
       } else {
         cartsInfo.push(this.list1[id - 1])
         localStorage.setItem('cartsInfo', JSON.stringify(cartsInfo))
       }
-      console.log('我是cartsInfo')
-      console.log(JSON.parse(localStorage.getItem('cartsInfo')))
       Toast('加入购物车成功')
     }
   }

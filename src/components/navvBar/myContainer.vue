@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="my">
     <div class="header2">
       <van-cell @click="showPopup"><i class="iconfont">&#xe615;</i></van-cell>
     <van-popup v-model="show" position="right" :style="{height:'100%'}">
@@ -10,20 +10,20 @@
             个人资料
           </span>
         </li>
-        <router-link to="/login">
-          <li>
+          <li @click="quit()">
             <i style="height:20px;width:20px;background:#FEDD52;border-radius:50%;padding:5px;" class="iconfont">&#xe603;</i>
             <span>
               退出登录
             </span>
           </li>
-        </router-link>
       </ul>
     </van-popup>
       <img class="avator" src="../../../static/img/avator.jpg" />
-      <div class="name">
-        <p>{{ name }}</p>
-        <p v-if="!name">未登录</p>
+      <div>
+        <p class="aname">{{ name }}</p>
+        <router-link to="/login">
+          <p class="aname" v-if="!name">未登录</p>
+        </router-link>
       </div>
     </div>
     <div class="my_order">
@@ -79,9 +79,13 @@ export default {
   methods: {
     showPopup () {
       this.show = true
+    },
+    quit () {
+      localStorage.removeItem('userinfo')
+      this.$router.push({path: '/login'})
     }
   },
-  created () {
+  mounted () {
     let userinfo = JSON.parse(localStorage.getItem('userinfo'))
     this.name = userinfo.userName
   }
@@ -89,9 +93,9 @@ export default {
 </script>
 
 <style lang="scss" scope>
-.container {
+.my {
   background: #fff;
-  height: 100vh;
+  min-height: 100vh;
   .header2 {
     position: relative;
     width: 100%;
@@ -130,10 +134,10 @@ export default {
         width: 100%;
       }
     }
-    .name {
+    .aname {
       position: absolute;
-      font-size: 18px;
-      color: #fff;
+      font-size: 28px;
+      color: #ffffff;
       top: 70px;
       left: 140px;
     }

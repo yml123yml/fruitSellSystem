@@ -46,16 +46,12 @@ export default {
       let cartsInfo = []
       if (localStorage.getItem('cartsInfo')) {
         let tempInfo = JSON.parse(localStorage.getItem('cartsInfo'))
-        console.log('我是tempInfo')
-        console.log(tempInfo)
         tempInfo.push(this.proList[id - 1])
         localStorage.setItem('cartsInfo', JSON.stringify(tempInfo))
       } else {
         cartsInfo.push(this.proList[id - 1])
         localStorage.setItem('cartsInfo', JSON.stringify(cartsInfo))
       }
-      console.log('我是cartsInfo')
-      console.log(JSON.parse(localStorage.getItem('cartsInfo')))
       Toast('加入购物车成功')
     }
   }

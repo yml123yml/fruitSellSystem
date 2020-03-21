@@ -51,15 +51,12 @@
       </van-tabs>
     </ul>
     <van-goods-action>
-      <van-goods-action-icon
-        icon="cart-o"
-        text="购物车"
-        @click="goCarShop"
-      />
+      <van-goods-action-icon icon="cart-o" text="购物车" @click="goCarShop" />
       <van-goods-action-button
         type="warning"
         text="加入购物车"
-        @click="addGoodsCar()"      />
+        @click="addGoodsCar()"
+      />
       <van-goods-action-button
         type="danger"
         text="立即购买"
@@ -87,31 +84,29 @@ export default {
   },
   methods: {
     goCarShop () {
-      this.$router.push({path: 'cartContainer'})
+      this.$router.push({ path: 'cartContainer' })
     },
     addGoodsCar () {
       this.goodsInfo.homeValue = this.homeValue
       let cartsInfo = []
       if (localStorage.getItem('cartsInfo')) {
         let tempInfo = JSON.parse(localStorage.getItem('cartsInfo'))
-        console.log('我是tempInfo')
-        console.log(tempInfo)
         tempInfo.push(this.goodsInfo)
         localStorage.setItem('cartsInfo', JSON.stringify(tempInfo))
       } else {
         cartsInfo.push(this.goodsInfo)
         localStorage.setItem('cartsInfo', JSON.stringify(cartsInfo))
       }
-      console.log('我是cartsInfo')
-      console.log(JSON.parse(localStorage.getItem('cartsInfo')))
       Toast('加入购物车成功')
     }
   },
   mounted () {
     let goodsInfo2 = JSON.parse(localStorage.getItem('goodsInfo'))
-    axios.post('api/banner/queryBannerDetail?', {id: goodsInfo2.id}).then(res => {
-      this.goodsInfo = res.data[0]
-    })
+    axios
+      .post('api/banner/queryBannerDetail?', { id: goodsInfo2.id })
+      .then(res => {
+        this.goodsInfo = res.data[0]
+      })
   },
   components: {
     headerDetail

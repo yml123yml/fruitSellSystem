@@ -25,13 +25,15 @@ router.post('/addUser', (req, res) => {
   var sql_name = $sql.user.select_name
   var sql = $sql.user.add
   var params = req.body
-  console.log(params)
   conn.query(sql_name, params.userName, function (err, result) {
     if (err) {
       console.log(err)
     }
     if (result[0] === undefined) {
-      conn.query(sql, [params.userName, params.passWord], function (err, result) {
+      conn.query(sql, [params.userName, params.passWord], function (
+        err,
+        result
+      ) {
         if (err) {
           console.log(err)
         }
@@ -40,7 +42,7 @@ router.post('/addUser', (req, res) => {
         }
       })
     } else {
-      res.send('-1')// 当前注册userName和数据库重复，data返回-1
+      res.send('-1') // 当前注册userName和数据库重复，data返回-1
     }
   })
 })

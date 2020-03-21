@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <div style="height:38px;">
+  <div class="cartcontainer">
+    <div style="height:40px;">
       <div class="header">
         <div class="title">购物车</div>
       </div>
@@ -23,15 +23,18 @@
               <van-row>
                 <van-col span="4">
                   <p class="shopprice">
-                    <span>¥{{ item.price}}</span>
+                    <span>¥{{ item.price }}</span>
                   </p>
                 </van-col>
                 <van-col span="4">
-                  <span class="oldprice">¥{{ item.oldPrice}}</span>
+                  <span class="oldprice">¥{{ item.oldPrice }}</span>
                 </van-col>
                 <van-col span="16">
                   <div class="shopnum">
-                    <van-stepper v-model="item.num" @change="onChange(item)" />
+                    <van-stepper
+                      v-model="item.homeValue"
+                      @change="onChange(item)"
+                    />
                   </div>
                 </van-col>
               </van-row>
@@ -48,7 +51,12 @@
     <div>
       <div class="cartfotter" v-if="shopcartList.length > 0">
         <van-submit-bar button-text="去结算" @submit="onSubmit">
-          <van-checkbox v-model="allchecked" checked-color="#15C481" @click="checkAll">全选</van-checkbox>
+          <van-checkbox
+            v-model="allchecked"
+            checked-color="#15C481"
+            @click="checkAll"
+            >全选</van-checkbox
+          >
           <div class="buyprice">
             <span class="p1">合计</span>
             <span class="p2">¥{{ totalprice }}</span>
@@ -61,7 +69,6 @@
 
 <script>
 import { Toast } from 'vant'
-import axios from 'axios'
 export default {
   data () {
     return {
@@ -77,16 +84,13 @@ export default {
   methods: {
     // 单选的change事件
     chooseChange (i, item) {
-      this.$toast(i)
       if (this.selectedData.indexOf(i) > -1) {
-        console.log(i)
         var arrs = this.selectedData.filter(function (item) {
           return item !== i
         })
         this.selectedData = arrs
         item.isChecked = false
         this.count()
-        console.log(this.selectedData)
       } else {
         this.selectedData.push(i)
         item.isChecked = true
@@ -98,20 +102,18 @@ export default {
         this.allchecked = true
       }
       this.count()
-      console.log(this.selectedData)
     },
     // 商品数量
     onChange (item) {
-      this.$toast(item.num)
       this.count()
-      console.log(this.shopcartList)
     },
     // 计算价格
     count: function () {
       var totalPrice = 0 // 临时总价
       this.shopcartList.forEach(function (val) {
         if (val.isChecked) {
-          totalPrice += val.num * val.price // 累计总价
+          totalPrice += val.homeValue * val.price // 累计总价
+          totalPrice = parseFloat(totalPrice.toFixed(2))
         }
       })
       this.totalprice = totalPrice
@@ -140,22 +142,22 @@ export default {
       let userinfo = JSON.parse(localStorage.getItem('userinfo'))
       if (userinfo === null) {
         Toast('未登录无法购买商品,请去登录')
-      }
-      // 选择购买的商品
-      var cartgoods = []
-      this.shopcartList.forEach(function (item) {
-        if (item.isChecked) {
-          cartgoods.push({ id: item.id, num: item.num })
-        }
-      })
-      if (cartgoods.length === 0) {
-        Toast('请选择商品购买')
+        setTimeout(function () {
+          this.$router.push('myContainer')
+        }.bind(this), 2000)
       } else {
-        this.$router.push('PaymentToOrderContainer')
-        // axios.post('/api/order/add', {}).then(res => {
-        //   console.log(res.data)
-        //   localStorage.setItem('orderInfo', JSON.stringify(res.data))
-        // })
+        // 选择购买的商品
+        var cartgoods = []
+        this.shopcartList.forEach(function (item) {
+          if (item.isChecked) {
+            cartgoods.push({ id: item.id, num: item.num })
+          }
+        })
+        if (cartgoods.length === 0) {
+          Toast('请选择商品购买')
+        } else {
+          this.$router.push('PaymentToOrderContainer')
+        }
       }
     }
   },
@@ -169,27 +171,28 @@ export default {
 }
 </script>
 <style lang="scss">
-.container {
+.cartcontainer {
   background: #fff;
   min-height: 100vh;
 }
 .header {
-  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 40px;
-  line-height: 38px;
+  line-height: 40px;
   background: linear-gradient(90deg, #39da85, #01b27a);
-  display: flex;
+  z-index: 1;
   .title {
     margin: 0 20px;
-    font-size: 12px;
+    font-size: 14px;
+    color: #ffffff;
   }
 }
 .cartList {
   margin-top: 10px;
+  padding-bottom: 130px;
   ul {
     li {
       width: 100%;
@@ -197,8 +200,6 @@ export default {
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin-bottom: -5px;
-
       .van-checkbox {
         margin-left: 15px;
         padding-right: 15px;
@@ -211,6 +212,7 @@ export default {
         .detailimg {
           width: 71px;
           height: 55px;
+          margin-right: 5px;
           img {
             width: 100%;
             height: 100%;
@@ -225,12 +227,13 @@ export default {
             font-size: 12px;
           }
           .shopprice {
-            margin-left: 8px;
+            margin: 0 8px;
             font-size: 12px;
             color: #15c481;
             font-weight: 600;
           }
           .oldprice {
+            margin: 0 8px;
             font-size: 8px;
             color: #a5a5a5;
             text-decoration: line-through;
@@ -293,9 +296,9 @@ export default {
 .cartfotter {
   .van-submit-bar {
     position: fixed;
-    bottom: 51px;
+    bottom: 49px;
     left: 0;
-    z-index: 100;
+    z-index: 2;
     width: 100%;
     background-color: #fff;
   }
