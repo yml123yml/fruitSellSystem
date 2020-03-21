@@ -4,17 +4,18 @@
     <div class="product-list">
       <div class="product-list-in">
         <div class="proitem" v-for="(item,index) in proList" :key="index">
-          <div class="pic" @click="getProDetail(item.id)">
-            <img :src="item.picture" />
+          <div class="pic">
+            <img :src="item.pic" />
             <div class="saletip">
               <span>{{ item.saletip }}</span>
             </div>
             <div class="info">
               <p class="name">
-                <a href="javascript:;">{{ item.name }}</a>
+                <a href="javascript:;">{{ item.title }}</a>
               </p>
               <div class="price">
                 <strong>￥{{ item.price }}</strong>
+                <van-icon @click="addGoodsCar(item.id)" name="shopping-cart-o" />
               </div>
             </div>
           </div>
@@ -25,11 +26,13 @@
 </template>
 
 <script>
+import { Toast } from 'vant'
 import axios from 'axios'
 export default {
   data () {
     return {
-      proList: []
+      proList: [],
+      homeValue: 1
     }
   },
   mounted () {
@@ -38,8 +41,22 @@ export default {
     })
   },
   methods: {
-    getProDetail (proId) {
-      this.$router.push({path: 'tuijianDetail', query: {id: proId}})
+    addGoodsCar (id) {
+      this.proList[id - 1].homeValue = this.homeValue
+      let cartsInfo = []
+      if (localStorage.getItem('cartsInfo')) {
+        let tempInfo = JSON.parse(localStorage.getItem('cartsInfo'))
+        console.log('我是tempInfo')
+        console.log(tempInfo)
+        tempInfo.push(this.proList[id - 1])
+        localStorage.setItem('cartsInfo', JSON.stringify(tempInfo))
+      } else {
+        cartsInfo.push(this.proList[id - 1])
+        localStorage.setItem('cartsInfo', JSON.stringify(cartsInfo))
+      }
+      console.log('我是cartsInfo')
+      console.log(JSON.parse(localStorage.getItem('cartsInfo')))
+      Toast('加入购物车成功')
     }
   }
 }
@@ -95,8 +112,15 @@ export default {
             .price {
               font-size: 12px;
               strong {
-                margin-left: 40px;
+                margin-left: 20px;
                 color: red;
+              }
+              .van-icon {
+                float: right;
+                padding-right: 10px;
+                margin-top: -5px;
+                font-size: 22px;
+                color: green;
               }
             }
           }

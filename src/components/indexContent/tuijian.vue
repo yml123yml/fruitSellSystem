@@ -4,12 +4,12 @@
     <div class="tuijian">
       <div class="tuijian-in">
         <div class="tuijian-item" v-for="(item,index) in tuijianList" :key="index">
-          <div class="pic" @click="getProDetail(item.id)">
-            <img :src="item.thumb" />
+          <div class="pic">
+            <img :src="item.pic" />
           </div>
           <div class="title">
             <div class="big-title">
-              {{ item.bigTitle1 }}
+              {{ item.title }}
               {{ item.bigTitle2 }}
             </div>
             <div class="small-title">{{ item.littleTitle }}</div>
@@ -17,7 +17,7 @@
               <span>￥{{ item.price }}</span>
               <span>/{{ item.num }}个</span>
             </div>
-            <div class="buy">立即购买</div>
+            <div class="buy" @click="addGoodsCar(item.id)">加入购物车</div>
           </div>
         </div>
       </div>
@@ -27,11 +27,12 @@
 
 <script>
 import axios from 'axios'
-
+import { Toast } from 'vant'
 export default {
   data () {
     return {
-      tuijianList: []
+      tuijianList: [],
+      homeValue: 1
     }
   },
   mounted () {
@@ -40,8 +41,22 @@ export default {
     })
   },
   methods: {
-    getProDetail (proId) {
-      this.$router.push({path: 'heavyCommendDetail', query: {id: proId}})
+    addGoodsCar (id) {
+      this.tuijianList[id - 1].homeValue = this.homeValue
+      let cartsInfo = []
+      if (localStorage.getItem('cartsInfo')) {
+        let tempInfo = JSON.parse(localStorage.getItem('cartsInfo'))
+        console.log('我是tempInfo')
+        console.log(tempInfo)
+        tempInfo.push(this.tuijianList[id - 1])
+        localStorage.setItem('cartsInfo', JSON.stringify(tempInfo))
+      } else {
+        cartsInfo.push(this.tuijianList[id - 1])
+        localStorage.setItem('cartsInfo', JSON.stringify(cartsInfo))
+      }
+      console.log('我是cartsInfo')
+      console.log(JSON.parse(localStorage.getItem('cartsInfo')))
+      Toast('加入购物车成功')
     }
   }
 }
@@ -51,7 +66,6 @@ export default {
 .container {
   background: #ff741f;
   padding-bottom: 120px;
-  // height: 100vh;
   img {
     width: 100%;
     height: 50px;

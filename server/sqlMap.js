@@ -10,7 +10,7 @@ var sqlMap = {
   },
   tuijian: {
     selectPro: 'select * from tuijian', // 滑动推荐
-    heavyPro: 'select * from heavyRecommend' // 重磅推荐
+    heavyPro: 'select * from heavyRecommend', // 重磅推荐
   },
   category: {
     hotFruit: 'select * from hotFruit', // 热销水果

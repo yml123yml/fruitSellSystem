@@ -2,7 +2,7 @@
   <div class="goodDetail">
     <header-detail title="地标水果"></header-detail>
     <ul style="margin-top:60px;">
-      <li v-for="item in list" :key="item.id">
+       <li v-for="(item ,index) in list2" :key="index">
         <div class="picture">
           <img :src="item.pic" />
         </div>
@@ -14,7 +14,7 @@
             <span class="priceRed">￥{{ item.price }}</span>
             <span class="standard">{{ item.num }}kg/箱</span>
           </p>
-          <p class="car">加入购物车</p>
+          <p class="car" @click="addGoodsCar(item.id)">加入购物车</p>
         </div>
       </li>
     </ul>
@@ -22,22 +22,43 @@
 </template>
 
 <script>
+import { Toast } from 'vant'
 import axios from 'axios'
 import headerDetail from '../../common/header'
 export default {
   name: 'landmarkDetail',
   data () {
     return {
-      list: []
+      list2: [],
+      homeValue: 1
     }
   },
   mounted () {
     axios.post('/api/category/landmankFruit').then(res => {
-      this.list = res.data
+      this.list2 = res.data
     })
   },
   components: {
     headerDetail
+  },
+  methods: {
+    addGoodsCar (id) {
+      this.list2[id - 1].homeValue = this.homeValue
+      let cartsInfo = []
+      if (localStorage.getItem('cartsInfo')) {
+        let tempInfo = JSON.parse(localStorage.getItem('cartsInfo'))
+        console.log('我是tempInfo')
+        console.log(tempInfo)
+        tempInfo.push(this.list2[id - 1])
+        localStorage.setItem('cartsInfo', JSON.stringify(tempInfo))
+      } else {
+        cartsInfo.push(this.list2[id - 1])
+        localStorage.setItem('cartsInfo', JSON.stringify(cartsInfo))
+      }
+      console.log('我是cartsInfo')
+      console.log(JSON.parse(localStorage.getItem('cartsInfo')))
+      Toast('加入购物车成功')
+    }
   }
 }
 </script>

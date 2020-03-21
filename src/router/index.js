@@ -8,8 +8,6 @@ import categoryContainer from '@/components/navvBar/categoryContainer.vue'
 import myContainer from '@/components/navvBar/myContainer.vue'
 import PaymentToOrderContainer from '@/components/orderContainer/PaymentToOrderContainer'
 import bannerDetail from '@/components/detail/bannerDetail'
-import tuijianDetail from '@/components/detail/tuijianDetail'
-import heavyCommendDetail from '@/components/detail/heavyCommendDetail'
 import hotDetail from '@/components/detail/hotDetail'
 import importedDetail from '@/components/detail/importedDetail'
 import seasonalDetail from '@/components/detail/seasonalDetail'
@@ -46,22 +44,6 @@ export default new Router({
       path: '/bannerDetail',
       name: 'bannerDetail',
       component: bannerDetail,
-      meta: {
-        keepAlive: false
-      }
-    },
-    {
-      path: '/tuijianDetail',
-      name: 'tuijianDetail',
-      component: tuijianDetail,
-      meta: {
-        keepAlive: false
-      }
-    },
-    {
-      path: '/heavyCommendDetail',
-      name: 'heavyCommendDetail',
-      component: heavyCommendDetail,
       meta: {
         keepAlive: false
       }
