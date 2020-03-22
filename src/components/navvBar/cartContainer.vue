@@ -2,7 +2,10 @@
   <div class="cartcontainer">
     <div style="height:40px;">
       <div class="header">
-        <div class="title">购物车</div>
+        <div class="title">
+          <span>购物车</span>
+          <span style="float:right;" @click="delCart()">删除</span>
+        </div>
       </div>
     </div>
     <div class="cartList">
@@ -68,7 +71,10 @@
 </template>
 
 <script>
+// eslint-disable-next-line import/no-duplicates
 import { Toast } from 'vant'
+// eslint-disable-next-line import/no-duplicates
+import { Dialog } from 'vant'
 export default {
   data () {
     return {
@@ -159,6 +165,24 @@ export default {
           this.$router.push('PaymentToOrderContainer')
         }
       }
+    },
+    delCart () {
+      let that = this
+      Dialog.confirm({
+        message: '您是否要删除已选中的商品'
+      }).then(() => {
+        let tempInfo = that.shopcartList
+        let temp = []
+        tempInfo.forEach(e => {
+          if (!e.isChecked) {
+            temp.push(e)
+          }
+        })
+        that.shopcartList = temp
+        localStorage.setItem('cartsInfo', JSON.stringify(that.shopcartList))
+      }).catch(() => {
+        // on cancel
+      })
     }
   },
   created: function () {
