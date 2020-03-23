@@ -14,6 +14,8 @@ import seasonalDetail from '@/components/detail/seasonalDetail'
 import onefreeDetail from '@/components/detail/onefreeDetail'
 import landmarkDetail from '@/components/detail/landmarkDetail'
 import shopDetail from '@/components/detail/shopDetail'
+import address from '@/components/address/addressList'
+import editAddress from '@/components/address/addressEdit'
 Vue.use(Router)
 
 export default new Router({
@@ -132,6 +134,22 @@ export default new Router({
       path: '/PaymentToOrderContainer',
       name: 'PaymentToOrderContainer',
       component: PaymentToOrderContainer,
+      meta: {
+        keepAlive: true
+      }
+    },
+    {
+      path: '/address',
+      name: 'address',
+      component: address,
+      meta: {
+        keepAlive: true
+      }
+    },
+    {
+      path: '/editAddress',
+      name: 'editAddress',
+      component: editAddress,
       meta: {
         keepAlive: true
       }

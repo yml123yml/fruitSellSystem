@@ -49,20 +49,15 @@
     </div>
     <div class="order_list">
       <ul>
-        <li>
-          <i class="iconfont">&#xe622;</i>
-          <span>
-            收货地址
-            <i class="iconfont">&#xe6e0;</i>
-          </span>
-        </li>
-        <li>
-          <i class="iconfont">&#xe603;</i>
-          <span>
-            联系客服
-            <i class="iconfont">&#xe6e0;</i>
-          </span>
-        </li>
+        <router-link to="/address">
+          <li>
+            <i class="iconfont">&#xe622;</i>
+            <span>
+              收货地址
+              <i class="iconfont">&#xe6e0;</i>
+            </span>
+          </li>
+        </router-link>
       </ul>
     </div>
   </div>

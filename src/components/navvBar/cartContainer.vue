@@ -153,13 +153,14 @@ export default {
         }.bind(this), 2000)
       } else {
         // 选择购买的商品
-        var cartgoods = []
+        var orderList = []
         this.shopcartList.forEach(function (item) {
           if (item.isChecked) {
-            cartgoods.push({ id: item.id, num: item.num })
+            orderList.push({ id: item.id, num: item.homeValue, title: item.title, price: item.price, pic: item.pic })
+            localStorage.setItem('orderList', JSON.stringify(orderList))
           }
         })
-        if (cartgoods.length === 0) {
+        if (orderList.length === 0) {
           Toast('请选择商品购买')
         } else {
           this.$router.push('PaymentToOrderContainer')

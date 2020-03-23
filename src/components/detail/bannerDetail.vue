@@ -98,6 +98,8 @@ export default {
         localStorage.setItem('cartsInfo', JSON.stringify(cartsInfo))
       }
       Toast('加入购物车成功')
+    },
+    goPayGoods () {
     }
   },
   mounted () {

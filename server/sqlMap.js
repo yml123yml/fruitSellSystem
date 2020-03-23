@@ -37,6 +37,15 @@ var sqlMap = {
   banner: {
     allBanner: 'select * from banner',
     getBannerById: 'select * from banner where id = ?'
+  },
+  address: {
+    query: 'select * from addressList',
+    add: 'insert into addressList(tel,name,province,city,county,addressDetail) values(?,?,?,?,?,?)',
+    update: 'update addressList set tel=?,name=?,province=?,city=?,county=?,addressDetail=? where id=?'
+  },
+  orderlist: {
+    query: 'select * from orderList',
+    add: 'insert into orderList(pic,title,name,tel,address) values(?,?,?,?,?)'
   }
 }
 
